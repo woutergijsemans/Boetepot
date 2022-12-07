@@ -6,7 +6,8 @@
     "start": "ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "githubpages": "ng build --prod --output-path ../../docs --base-href https://woutergijsemans.github.io/Boetepot/"
   },
   "private": true,
   "dependencies": {
