@@ -1,19 +1,37 @@
 <div *ngIf="penalties">
-    <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto">
-        <div *ngFor="let penalty of penalties" class="boete position-relative">
-            <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="boete"
-                [attr.id]="penalty.id" [value]="penalty" [(ngModel)]="selectedPenalty" checked="">
-            <label class="list-group-item py-3 pe-5" [attr.for]="penalty.id">
-                <strong class="fw-semibold">{{penalty.description}}</strong>
-                <span *ngIf="penalty.amount > 0" class="d-block small opacity-75">{{penalty.amount | currency}}</span>
-                <span *ngIf="penalty.amount === 0" class="d-block small opacity-75">{{penalty.extraInfo}}</span>
-            </label>
+    <div *ngIf="penaltySelection">
+        <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto">
+            <div *ngFor="let penalty of penalties" class="boete position-relative">
+                <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="radio" name="boete"
+                    [attr.id]="penalty.id" [value]="penalty" [(ngModel)]="selectedPenalty" checked="">
+                <label class="list-group-item py-3 pe-5" [attr.for]="penalty.id">
+                    <strong class="fw-semibold">{{penalty.description}}</strong>
+                    <span *ngIf="penalty.amount > 0" class="d-block small opacity-75">{{penalty.amount |
+                        currency}}</span>
+                    <span *ngIf="penalty.amount === 0" class="d-block small opacity-75">{{penalty.extraInfo}}</span>
+                </label>
+            </div>
+        </div>
+
+        <div class="actionButtons d-flex sticky-bottom justify-content-around">
+            <button class="btn btn-secondary flex-fill" type="button" (click)="cancelPenalties()">Annuleren</button>
+            <button class="btn btn-info flex-fill" type="button" (click)="toggleScreen()">Volgende</button>
         </div>
     </div>
 
-    <div class="volgende d-grid gap-2 sticky-bottom">
-        <button class="btn btn-warning" type="button">Volgende</button>
+    <div *ngIf="playerSelection && selectablePlayers">
+        <div class="list-group list-group-radio d-grid gap-2 border-0 w-auto">
+            <div *ngFor="let player of selectablePlayers" class="boete position-relative">
+                <input class="form-check-input position-absolute top-50 end-0 me-3 fs-5" type="checkbox"
+                    [(ngModel)]="player.selected" [attr.id]="player.item.id" />
+                <label class="list-group-item py-3 pe-5" [attr.for]="player.item.id">
+                    <strong class="fw-semibold">{{player.item.name}}</strong>
+                </label>
+            </div>
+        </div>
+        <div class="actionButtons d-flex sticky-bottom justify-content-around">
+            <button class="btn btn-secondary flex-fill" type="button" (click)="toggleScreen();">Vorige</button>
+            <button class="btn btn-info flex-fill" type="button" (click)="savePenalties()">Bewaren</button>
+        </div>
     </div>
-
-    {{selectedPenalty | json}}
 </div>

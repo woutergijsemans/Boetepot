@@ -1,5 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BusyService } from 'src/app/shared/busy.service';
+import { Player, Team } from 'src/app/shared/model';
 import { TeamService } from '../team.service';
 
 @Component({
@@ -11,12 +12,12 @@ export class DashboardComponent implements OnInit {
 
   constructor(private teamService: TeamService, private busyService: BusyService) { }
 
-  @Input() team: any;
+  @Input() team: Team;
 
   ngOnInit(): void {
   }
 
-  public getHeadingId(player: any, useAnchor: boolean, prefix: string = ''): string {
+  public getHeadingId(player: Player, useAnchor: boolean, prefix: string = ''): string {
     const heading = `${useAnchor ? '#' : ''}${prefix}${player.id}`;
     return heading;
   }

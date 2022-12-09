@@ -17,6 +17,10 @@
 }
 
 .boete,
-.volgende {
+.actionButtons {
     margin: 0.1rem 1rem;
+}
+
+.actionButtons {
+    gap: 0.5rem;
 }

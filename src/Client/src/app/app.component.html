@@ -1,30 +1,6 @@
 <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
   <div class="container-fluid">
     <span class="navbar-brand">Boetepot</span>
-    <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#navbarsExample01"
-      aria-controls="navbarsExample01" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <div class="navbar-collapse collapse" id="navbarsExample01" style="">
-      <ul class="navbar-nav me-auto mb-2">
-        <li class="nav-item">
-          <span class="nav-link active" (click)="addBoete = false">Overzicht</span>
-        </li>
-        <li class="nav-item">
-          <span class="nav-link" [class.active]="addBoete" (click)="addBoete = true">Boete toevoegen</span>
-        </li>
-
-      </ul>
-    </div>
-  </div>
-</nav>
-
-<br />
-
-<nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
-  <div class="container-fluid">
-    <span class="navbar-brand">Boetepot</span>
     <button class="navbar-toggler" [class.collapsed]="!expanded" type="button" (click)="expanded = !expanded">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -43,6 +19,8 @@
   </div>
 </nav>
 <team-dashboard *ngIf="!addBoete" [team]="team"></team-dashboard>
-<boete-toevoegen *ngIf="addBoete" [penalties]="penalties"></boete-toevoegen>
+<boete-toevoegen *ngIf="addBoete" [penalties]="penalties" [players]="players" (canceled)="addBoete = false"
+  (saved)="reloadDashboard()">
+</boete-toevoegen>
 <spinner></spinner>
 <router-outlet></router-outlet>
