@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
+import { BusyService } from 'src/app/shared/busy.service';
 import { TeamService } from '../team.service';
 
 @Component({
@@ -8,14 +9,16 @@ import { TeamService } from '../team.service';
 })
 export class DashboardComponent implements OnInit {
 
-  constructor(private teamService: TeamService) { }
+  constructor(private teamService: TeamService, private busyService: BusyService) { }
 
-  public team: any;
+  @Input() team: any;
+
   ngOnInit(): void {
-    this.teamService.getBySlug('vc-heist-herenthout').subscribe(x => {
-      console.log(x);
-      this.team = x;
-    });
+  }
+
+  public getHeadingId(player: any, useAnchor: boolean, prefix: string = ''): string {
+    const heading = `${useAnchor ? '#' : ''}${prefix}${player.id}`;
+    return heading;
   }
 
 }

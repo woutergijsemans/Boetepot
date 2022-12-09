@@ -1,0 +1,22 @@
+.form-check-input:checked[type=radio] {
+    background-image: url("data:image/svg+xml;base64,PHN2ZyB4bWxucz0naHR0cDovL3d3dy53My5vcmcvMjAwMC9zdmcnIHZpZXdCb3g9Jy00IC00IDggOCc+PGNpcmNsZSByPScyJyBmaWxsPScjZmZmJy8+PC9zdmc+")
+}
+
+.list-group-radio .form-check-input {
+    z-index: 2;
+    margin-top: -0.5em;
+}
+
+.form-check-input:checked {
+    background-color: #0d6efd;
+    border-color: #0d6efd;
+}
+
+.form-check-input[type=radio] {
+    border-radius: 50%;
+}
+
+.boete,
+.volgende {
+    margin: 0.1rem 1rem;
+}
