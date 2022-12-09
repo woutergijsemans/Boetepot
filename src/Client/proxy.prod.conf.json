@@ -1,0 +1,12 @@
+{
+    "/api": {
+        "target": "https://thebarn-2288.azurewebsites.net/",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true,
+        "pathRewrite": {
+            "^/api": "/api"
+        },
+        "timeout": 3000000
+    }
+}

@@ -74,7 +74,8 @@
           },
           "configurations": {
             "production": {
-              "browserTarget": "boetepot:build:production"
+              "browserTarget": "boetepot:build:production",
+              "proxyConfig": "./proxy.prod.conf.json"
             },
             "development": {
               "browserTarget": "boetepot:build:development"
