@@ -22,7 +22,6 @@ export class RedirectComponent implements OnInit, OnDestroy {
         const isAdminString = queryParams.get('a');
         isAdmin = isAdminString.toLowerCase() == 'true';
       }
-      alert(isAdmin);
       this.stateService.setAdmin(isAdmin);
       this.router.navigate([slug]);
     });
