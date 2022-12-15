@@ -12,7 +12,7 @@ export class PlayerPenalty extends Penalty {
     }
 
     public static fromDto(dto: any): PlayerPenalty {
-        return new PlayerPenalty(null, dto.description, dto.amount, dto.extraInfo, dto.isPaid, new Date(dto.date));
+        return new PlayerPenalty(dto.id, dto.description, dto.amount, dto.extraInfo, dto.isPaid, new Date(dto.date));
     }
 }
 
@@ -25,12 +25,12 @@ export class Player {
 }
 
 export class PlayerWithInfo extends Player {
-    constructor(id: string, name: string, public penaltyCount: number, public penalties: PlayerPenalty[]) {
+    constructor(id: string, name: string, public penaltyCount: number, public penaltiesToPay: number, public penalties: PlayerPenalty[]) {
         super(id, name);
     }
 
     public static fromDto(dto: any): PlayerWithInfo {
-        return new PlayerWithInfo(dto.id, dto.name, dto.penaltyCount, dto.penalties.map((p => PlayerPenalty.fromDto(p))));
+        return new PlayerWithInfo(dto.id, dto.name, dto.penaltyCount, dto.penaltiesToPay, dto.penalties.map((p => PlayerPenalty.fromDto(p))));
     }
 }
 

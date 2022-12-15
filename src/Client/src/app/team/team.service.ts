@@ -23,4 +23,8 @@ export class TeamService {
     const request = { playerIds, penaltyId, slug };
     return this.http.post<any>(`${environment.apiBaseUrl}teams/${slug}/players/penalty`, request);
   }
+
+  public payPenalty(slug: string, playerId: string, playerPenaltyId: string): Observable<any> {
+    return this.http.put<any>(`${environment.apiBaseUrl}teams/${slug}/players/${playerId}/penalties/${playerPenaltyId}`, {});
+  }
 }

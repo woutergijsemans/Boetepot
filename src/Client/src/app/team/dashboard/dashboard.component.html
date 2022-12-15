@@ -7,7 +7,10 @@
                     [attr.aria-controls]="getHeadingId(player,false,'collapse')">
                     <h4><span class="badge rounded-circle" [class.text-bg-danger]="i === 0"
                             [class.text-bg-warning]="i === 1" [class.text-bg-secondary]="i === 2"
-                            [class.text-bg-dark]="i > 2">{{player.penaltyCount}}</span> {{player.name}}
+                            [class.text-bg-dark]="i > 2">{{player.penaltyCount}}</span> {{player.name}} <small
+                            *ngIf="player.penaltiesToPay > 0" class="text-muted">- {{player.penaltiesToPay}} boete<span
+                                *ngIf="player.penaltiesToPay > 1">s</span> nog te
+                            betalen</small>
                     </h4>
                 </button>
             </h2>
@@ -16,10 +19,11 @@
                 <div class="accordion-body">
                     <ul class="list-group  list-group-flush">
                         <li *ngFor="let penalty of player.penalties" class="list-group-item">
-                            <span class="badge" [class.text-bg-success]="penalty.isPaid"
-                                [class.text-bg-danger]="!penalty.isPaid">&nbsp;</span> - {{ penalty.date |
-                            date:'fullDate' }} -
-                            {{penalty.description}}
+                            <span (click)="payPenalty(penalty, player)" class="badge"
+                                [class.text-bg-success]="penalty.isPaid" [class.text-bg-danger]="!penalty.isPaid"><span
+                                    *ngIf="!penalty.extraInfo">{{penalty.amount | currency}}</span><span
+                                    *ngIf="penalty.extraInfo">{{penalty.extraInfo}}</span></span> -
+                            <span>{{penalty.description}}</span>
                         </li>
                     </ul>
                 </div>

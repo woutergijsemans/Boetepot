@@ -11,7 +11,7 @@ import { TeamService } from './team/team.service';
 })
 export class AppComponent implements OnInit, OnDestroy {
   private destroy: Subject<boolean> = new Subject<boolean>();
-  private slug: string = 'vc-heist-herenthout';
+  public slug: string = 'vc-heist-herenthout';
   constructor(private busyService: BusyService, private teamService: TeamService) { }
 
   public team: Team;

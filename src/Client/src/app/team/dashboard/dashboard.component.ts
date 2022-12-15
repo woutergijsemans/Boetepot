@@ -1,6 +1,6 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { BusyService } from 'src/app/shared/busy.service';
-import { Player, Team } from 'src/app/shared/model';
+import { Player, PlayerPenalty, PlayerWithInfo, Team } from 'src/app/shared/model';
 import { TeamService } from '../team.service';
 
 @Component({
@@ -13,6 +13,7 @@ export class DashboardComponent implements OnInit {
   constructor(private teamService: TeamService, private busyService: BusyService) { }
 
   @Input() team: Team;
+  @Input() slug: string;
 
   ngOnInit(): void {
   }
@@ -20,6 +21,18 @@ export class DashboardComponent implements OnInit {
   public getHeadingId(player: Player, useAnchor: boolean, prefix: string = ''): string {
     const heading = `${useAnchor ? '#' : ''}${prefix}${player.id}`;
     return heading;
+  }
+
+  public payPenalty(penalty: PlayerPenalty, player: PlayerWithInfo): void {
+    if (!penalty.isPaid) {
+      this.busyService.work();
+      this.teamService.payPenalty(this.slug, player.id, penalty.id).subscribe(() => {
+        penalty.isPaid = true;
+        player.penaltiesToPay = player.penaltiesToPay - 1;
+        this.busyService.rest();
+      });
+    }
+
   }
 
 }
