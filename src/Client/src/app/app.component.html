@@ -20,9 +20,9 @@
     </div>
   </div>
 </nav>
-<team-dashboard *ngIf="!addBoete" [team]="team" [slug]="slug"></team-dashboard>
+<!--<team-dashboard *ngIf="!addBoete" [team]="team" [slug]="slug"></team-dashboard>
 <boete-toevoegen *ngIf="addBoete" [penalties]="penalties" [players]="players" (canceled)="addBoete = false"
   (saved)="reloadDashboard()">
-</boete-toevoegen>
+</boete-toevoegen>-->
 <spinner></spinner>
 <router-outlet></router-outlet>

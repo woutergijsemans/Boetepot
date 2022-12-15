@@ -8,13 +8,15 @@ import { TeamModule } from './team/team.module';
 import { SpinnerComponent } from './shared/spinner/spinner.component';
 import { registerLocaleData } from '@angular/common';
 import { TestComponent } from './test/test.component';
+import { RedirectComponent } from './redirect/redirect.component';
 registerLocaleData(localenl, 'nl-BE');
 
 @NgModule({
   declarations: [
     AppComponent,
     SpinnerComponent,
-    TestComponent
+    TestComponent,
+    RedirectComponent
   ],
   imports: [
     BrowserModule,
