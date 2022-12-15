@@ -16,7 +16,7 @@ export class AppComponent implements OnInit, OnDestroy {
   constructor(private route: ActivatedRoute) { }
 
   ngOnInit(): void {
-    this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe((paramMap) => this.slug = paramMap.get('slug'));
+    //this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe((paramMap) => this.slug = paramMap.get('slug'));
   }
 
   ngOnDestroy(): void {
