@@ -15,7 +15,11 @@ export class RedirectComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     this.route.queryParamMap.pipe(takeUntil(this.destroy)).subscribe((queryParams) => {
-      const slug = queryParams.get('t');
+      let slug = 'vc-heist-herenthout';
+
+      if (queryParams.has('t')) {
+        slug = queryParams.get('t');
+      }
 
       let isAdmin = false;
       if (queryParams.has('a')) {
