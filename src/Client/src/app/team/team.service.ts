@@ -3,7 +3,7 @@ import { map, Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { environment } from 'src/environments/environment';
 import { observableToBeFn } from 'rxjs/internal/testing/TestScheduler';
-import { Team } from '../shared/model';
+import { Player, Team } from '../shared/model';
 
 @Injectable({
   providedIn: 'root'
@@ -13,6 +13,10 @@ export class TeamService {
 
   public getBySlug(slug: string): Observable<Team> {
     return this.http.get<Team>(`${environment.apiBaseUrl}teams/${slug}`).pipe(map(x => Team.fromDto(x)));
+  }
+
+  public getPlayers(slug: string): Observable<Player[]> {
+    return this.http.get<Player[]>(`${environment.apiBaseUrl}teams/${slug}/players`);
   }
 
   public getPenalties(slug: string): Observable<any> {

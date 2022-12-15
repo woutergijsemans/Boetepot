@@ -16,7 +16,7 @@ registerLocaleData(localenl, 'nl-BE');
     AppComponent,
     SpinnerComponent,
     TestComponent,
-    RedirectComponent
+    RedirectComponent,
   ],
   imports: [
     BrowserModule,
