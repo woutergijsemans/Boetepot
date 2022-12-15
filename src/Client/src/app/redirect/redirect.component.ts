@@ -1,17 +1,36 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { Component, OnDestroy, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Subject, takeUntil } from 'rxjs';
+import { StateService } from '../shared/state.service';
 
 @Component({
   selector: 'app-redirect',
   templateUrl: './redirect.component.html',
   styleUrls: ['./redirect.component.css']
 })
-export class RedirectComponent implements OnInit {
+export class RedirectComponent implements OnInit, OnDestroy {
+  private destroy: Subject<boolean> = new Subject<boolean>();
 
-  constructor(private route: Router) { }
+  constructor(private router: Router, private route: ActivatedRoute, private stateService: StateService) { }
 
   ngOnInit(): void {
-    this.route.navigate(['vc-heist-herenthout']);
+    this.route.queryParamMap.pipe(takeUntil(this.destroy)).subscribe((queryParams) => {
+      const slug = queryParams.get('t');
+
+      let isAdmin = false;
+      if (queryParams.has('a')) {
+        const isAdminString = queryParams.get('a');
+        isAdmin = isAdminString.toLowerCase() == 'true';
+      }
+      alert(isAdmin);
+      this.stateService.setAdmin(isAdmin);
+      this.router.navigate([slug]);
+    });
+  }
+
+  ngOnDestroy(): void {
+    this.destroy.next(true);
+    this.destroy.complete();
   }
 
 }

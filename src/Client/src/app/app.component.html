@@ -8,9 +8,12 @@
     <div class="collapse navbar-collapse" [class.show]="expanded">
       <ul class="navbar-nav me-auto mb-2">
         <li class="nav-item" (click)="expanded = false">
-          <a class="nav-link" aria-current="page" [routerLink]="[slug]">Overzicht</a>
+          <a class="nav-link" [routerLink]="[slug]">Rangschikking</a>
         </li>
         <li class="nav-item" (click)="expanded = false">
+          <a class="nav-link" [routerLink]="[slug,'boetelijst']">Boetelijst</a>
+        </li>
+        <li class="nav-item" *ngIf="canEdit" (click)="expanded = false">
           <a class="nav-link" [routerLink]="[slug,'boete-toevoegen']">Boetes toevoegen</a>
         </li>
       </ul>
