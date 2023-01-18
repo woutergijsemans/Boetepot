@@ -3,6 +3,7 @@ import { ActivatedRoute, Router } from '@angular/router';
 import { mergeMap, Subject, takeUntil } from 'rxjs';
 import { BusyService } from 'src/app/shared/busy.service';
 import { Player, PlayerPenalty, PlayerWithInfo, Team } from 'src/app/shared/model';
+import { StateService } from 'src/app/shared/state.service';
 import { TeamService } from '../team.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { TeamService } from '../team.service';
 })
 export class DashboardComponent implements OnInit, OnDestroy {
 
-  constructor(private route: ActivatedRoute, private teamService: TeamService, private busyService: BusyService) { }
+  constructor(private route: ActivatedRoute, private teamService: TeamService, private busyService: BusyService, private stateService: StateService) { }
 
   public team: Team;
   private slug: string;
@@ -42,7 +43,7 @@ export class DashboardComponent implements OnInit, OnDestroy {
   }
 
   public payPenalty(penalty: PlayerPenalty, player: PlayerWithInfo): void {
-    if (!penalty.isPaid) {
+    if (!penalty.isPaid && this.stateService.isAdmin()) {
       this.busyService.work();
       this.teamService.payPenalty(this.slug, player.id, penalty.id).subscribe(() => {
         penalty.isPaid = true;

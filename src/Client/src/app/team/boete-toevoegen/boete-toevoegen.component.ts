@@ -70,7 +70,7 @@ export class BoeteToevoegenComponent implements OnInit, OnDestroy {
     });
   }
   private goToDashboard(): void {
-    this.router.navigate(['..']);
+    this.router.navigate(['../']);
   }
 
 }
