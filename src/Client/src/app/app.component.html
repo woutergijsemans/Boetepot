@@ -1,6 +1,6 @@
 <nav class="navbar navbar-dark bg-dark" aria-label="First navbar example">
   <div class="container-fluid">
-    <span class="navbar-brand">Boetepot</span>
+    <span class="navbar-brand">Boetepot <span *ngIf="isAdmin">beheer</span></span>
     <button class="navbar-toggler" [class.collapsed]="!expanded" type="button" (click)="expanded = !expanded">
       <span class="navbar-toggler-icon"></span>
     </button>
@@ -13,7 +13,7 @@
         <li class="nav-item" (click)="expanded = false">
           <a class="nav-link" [routerLink]="[slug,'boetelijst']">Boetelijst</a>
         </li>
-        <li class="nav-item" *ngIf="canEdit" (click)="expanded = false">
+        <li class="nav-item" *ngIf="isAdmin" (click)="expanded = false">
           <a class="nav-link" [routerLink]="[slug,'boete-toevoegen']">Boetes toevoegen</a>
         </li>
       </ul>

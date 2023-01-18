@@ -5,11 +5,18 @@ import { BehaviorSubject } from 'rxjs';
   providedIn: 'root'
 })
 export class StateService {
+  private isAdminKey: string = 'isAdmin';
 
-  public isAdmin: BehaviorSubject<boolean> = new BehaviorSubject<boolean>(false);
   constructor() { }
 
   public setAdmin(val: boolean): void {
-    this.isAdmin.next(val);
+    console.log('set isAdmin: ' + val);
+    sessionStorage.setItem(this.isAdminKey, val.toString());
+  }
+
+  public isAdmin(): boolean {
+    var value = sessionStorage.getItem(this.isAdminKey);
+    console.log('get isAdmin: ' + value);
+    return value !== null && value.toLowerCase() === 'true';
   }
 }

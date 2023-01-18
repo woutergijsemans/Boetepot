@@ -18,7 +18,7 @@ export class AppComponent implements OnInit, OnDestroy {
 
   ngOnInit(): void {
     //this.route.paramMap.pipe(takeUntil(this.destroy)).subscribe((paramMap) => this.slug = paramMap.get('slug'));
-    this.stateService.isAdmin.subscribe((isAdmin) => this.canEdit = isAdmin);
+    this.canEdit = this.stateService.isAdmin();
   }
 
   ngOnDestroy(): void {
@@ -28,4 +28,8 @@ export class AppComponent implements OnInit, OnDestroy {
 
   public expanded: boolean = false;
   public canEdit: boolean = false;
+
+  public get isAdmin(): boolean {
+    return this.stateService.isAdmin();
+  }
 }
